@@ -1,0 +1,25 @@
+<library path="lib/libijs_controllers">
+
+  <class name="ijs_controllers/CartesianImpedance" type="ijs_controllers::CartesianImpedance" base_class_type="controller_interface::ControllerBase">
+    <description>
+      A controller that renders a spring damper system in cartesian space. Compliance and filter parameters, as well as the equilibrium pose can be modified online. 
+    </description>
+  </class>
+
+  <class name="ijs_controllers/JointImpedance" type="ijs_controllers::JointImpedance" base_class_type="controller_interface::ControllerBase">
+    <description>
+    Impedance control in joint space with feed forward torques (for CMPs)
+    </description>
+  </class>
+
+  <class name="ijs_controllers/JointVelocity" type="ijs_controllers::JointVelocity" base_class_type="controller_interface::ControllerBase">
+    <description>
+      Joint velocity controller with limited error, equivalent to mode 10 on Kuka. 
+    </description>
+  </class>
+
+  <class name="ijs_controllers/RobotMode" type="ijs_controllers::RobotMode" base_class_type="controller_interface::ControllerBase">
+    <description> Describes the robot's current mode.  </description>
+  </class>
+
+</library>

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<launch>
+  
+  <arg name="robot_ip" default="192.16.0.2" doc="FCI IP" />
+  <arg name="load_gripper" default="true"  doc="Should a franka hand be mounted on the flange?" />
+  <arg name="robot" default="panda" doc="Robot type. Possible values: [panda, fr3]"/>
+  <arg name="arm_id" default="$(arg robot)"  doc="Name of the robot to spawn, usually same as robot type" />
+  <arg name="robot_ns" value="$(arg __ns)" doc="Optional: namespace of the robot when using mutliple robots. If using this option, set arm_id accordingly." />
+  <arg name="legacy_franka_ros" default="true" doc="libfranka version (legacy if 0.8 or lower)" />
+
+  <include file="$(find ijs_controllers)/launch/ijs_controller_helper.launch" >
+    <arg name="robot_ip" value="$(arg robot_ip)" />
+    <arg name="load_gripper" value="$(arg load_gripper)" />
+    <arg name="robot" value="$(arg robot)" />
+    <arg name="arm_id" value="$(arg arm_id)" />
+    <arg name="robot_ns" value="$(arg robot_ns)" />
+    <arg name="legacy_franka_ros" value="$(arg legacy_franka_ros)" />   
+    <arg name="controller" value="joint_impedance_controller" />
+  </include>
+    
+</launch>

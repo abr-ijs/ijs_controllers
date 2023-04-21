@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="robot_ip" default="192.16.0.1" />
+  <arg name="load_gripper" default="true" />
+  <arg name="arm_id" default="panda" />
+  <arg name="robot_ns" default="$(arg robot_ns)" />
+  <arg name="robot" default="$(arg arm_id)" />
+
+  <arg name="legacy_franka_ros" default="true" doc="legacy if 0.8 or lower" />
+    
+  <include file="$(find reconcycle_franka_control)/launch/franka_control.launch" if="$(arg legacy_franka_ros)">
+    <arg name="robot_ip" value="$(arg robot_ip)" /> 
+    <arg name="robot_ns" value="$(arg robot_ns)" />
+    <arg name="load_gripper" value="$(arg load_gripper)" />
+  </include>
+
+  <!-- franka_control supports variable arm_ids from 0.9 onwards -->
+  <include file="$(find franka_control)/launch/franka_control.launch" unless="$(arg legacy_franka_ros)">
+    <arg name="robot_ip" value="$(arg robot_ip)" /> 
+    <arg name="arm_id" value="$(arg arm_id)" />
+    <arg name="load_gripper" value="$(arg load_gripper)" />
+    <arg name="robot" value="$(arg robot)" />
+  </include>
+
+</launch>
